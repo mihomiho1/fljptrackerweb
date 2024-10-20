@@ -67,13 +67,13 @@ function displayWeapons(weapons) {
     weaponDiv.innerHTML = `
       <h3>${weapon.name}</h3>
       <p>ID: ${weapon.id}</p>
-      <p>説明: ${weapon.description || '説明なし'}</p>
+      <p>${weapon.description || 'null'}</p>
       <p>レアリティ: ${weapon.rarity}</p>
       <p>クリティカルダメージ: ${weapon.mainStats.DamageZone_Critical}</p>
       <p>ダメージ: ${weapon.mainStats.DmgPB}</p>
       <p>発射レート: ${weapon.mainStats.FiringRate} 発/秒</p>
       <p>リロード時間: ${weapon.mainStats.ReloadTime} 秒</p>
-      <img src="${weapon.images.icon}" alt="${weapon.name}アイコン" />
+      <img src="${weapon.images.background}" alt="${weapon.name}アイコン" />
     `;
     resultsContainer.appendChild(weaponDiv);
   });
