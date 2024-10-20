@@ -1,0 +1,61 @@
+/* ニュース結果コンテナのスタイル */
+#news-results {
+    display: flex;
+    flex-wrap: wrap; /* カードが折り返されるようにする */
+    gap: 16px; /* カード間のスペース */
+    justify-content: space-between; /* カードの間隔を均等にする */
+}
+
+/* ニュースカードのスタイル */
+.news-card {
+    flex: 1 1 calc(33.333% - 16px); /* 各カードの幅を33.333%に設定し、マージンを引く */
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 16px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    min-width: 300px; /* 最小幅を設定して小さくなりすぎないようにする */
+    opacity: 0; /* 初期状態は透明 */
+    transform: translateY(20px); /* 初期状態を下にずらす */
+    animation: fadeInUp 0.6s forwards; /* フェードイン・アップのアニメーション */
+}
+
+/* カードのフェードイン・アップアニメーション */
+@keyframes fadeInUp {
+    to {
+        opacity: 1; /* 完全に不透明に */
+        transform: translateY(0); /* 元の位置に戻す */
+    }
+}
+
+.news-card h3 {
+    margin: 0 0 8px;
+    font-size: 1.5em;
+    transition: color 0.3s; /* テキストの色変更にアニメーションを追加 */
+}
+
+.news-card p {
+    margin: 0 0 12px;
+    font-size: 1em;
+    line-height: 1.5;
+}
+
+.news-card img {
+    width: 100%; /* 画像をカード全体に広げる */
+    border-radius: 4px;
+    margin-top: 8px;
+    transition: transform 0.3s; /* 画像の拡大アニメーション */
+}
+
+/* ホバー時のアニメーション */
+.news-card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* ホバー時の影の強調 */
+}
+
+.news-card:hover img {
+    transform: scale(1.05); /* ホバー時に画像を拡大 */
+}
+
+.news-card:hover h3 {
+    color: #007BFF; /* ホバー時にタイトルの色を変更 */
+}

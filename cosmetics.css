@@ -1,0 +1,71 @@
+#results {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px; /* アイテム間のスペースを小さく */
+}
+
+.item {
+  border: 1px solid #ddd; /* ボーダー */
+  border-radius: 8px; /* 角の丸み */
+  padding: 6px; /* パディングを小さく */
+  width: calc(20% - 10px); /* 幅を20%に調整して5列表示 */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* シャドウ */
+  transition: transform 0.2s; /* アニメーション */
+  background-color: #5A9ECC; /* アイテムカードの背景色を青に設定 */
+  color: white; /* テキストの色を白に設定 */
+}
+
+.item:hover {
+  transform: scale(1.05); /* ホバー時の拡大 */
+}
+
+.item img {
+  max-width: 70%; /* 画像サイズを小さく */
+  height: auto; /* 高さ自動調整 */
+  border-radius: 4px; /* 画像の角の丸み */
+}
+
+.item h3 {
+  margin: 0; /* マージンリセット */
+  font-size: 0.9em; /* フォントサイズを小さく */
+}
+
+.item p {
+  margin: 4px 0; /* 各段落のマージン */
+  font-size: 0.75em; /* フォントサイズを小さく */
+}
+
+/* スマホ用のメディアクエリ */
+@media (max-width: 768px) {
+  .item {
+    width: calc(50% - 10px); /* 画面幅が768px以下の時は2列に */
+    font-size: 0.8em; /* フォントサイズを調整 */
+  }
+}
+
+@media (max-width: 480px) {
+  .item {
+    width: calc(100% - 10px); /* 画面幅が480px以下の時は1列に */
+    font-size: 0.7em; /* フォントサイズを調整 */
+  }
+}
+
+/* cosmetics.css */
+.loading, .searching {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5em; /* フォントサイズを大きく */
+  color: #333; /* テキストの色 */
+  animation: fade 1.5s infinite; /* フェードアニメーション */
+  margin: 20px; /* メッセージ周りの余白 */
+}
+
+@keyframes fade {
+  0%, 100% {
+    opacity: 0.5; /* 初めと終わりは半透明 */
+  }
+  50% {
+    opacity: 1; /* 中間は完全に不透明 */
+  }
+}

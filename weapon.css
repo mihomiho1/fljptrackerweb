@@ -1,0 +1,69 @@
+/* 武器結果コンテナのスタイル */
+#weapons-results {
+    display: flex;
+    flex-wrap: wrap; /* カードが折り返されるようにする */
+    gap: 16px; /* カード間のスペース */
+    justify-content: space-between; /* カードの間隔を均等にする */
+}
+
+/* 武器カードのスタイル */
+.weapon-item {
+    flex: 1 1 calc(20% - 16px); /* 各カードの幅を20%に設定し、マージンを引く */
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 8px; /* パディングを小さくしてカードをスリムに */
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    min-width: 150px; /* 最小幅を設定して小さくなりすぎないようにする */
+    opacity: 0; /* 初期状態では透明に */
+    transform: translateY(20px); /* 下に移動させておく */
+    animation: fadeIn 0.3s forwards; /* アニメーションを適用 */
+}
+
+/* ローディングインジケーターのスタイル */
+#loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5em;
+    height: 50px; /* 高さを設定 */
+    color: #333; /* テキストカラー */
+    animation: fadeIn 0.5s; /* アニメーションを適用 */
+}
+
+/* アニメーション */
+@keyframes fadeIn {
+    0% {
+        opacity: 0; /* 初期状態は透明 */
+        transform: translateY(-10px); /* 少し上に移動 */
+    }
+    100% {
+        opacity: 1; /* 完全に表示 */
+        transform: translateY(0); /* 元の位置に戻る */
+    }
+}
+
+/* カードの表示アニメーション */
+@keyframes fadeIn {
+    to {
+        opacity: 1; /* 完全に表示 */
+        transform: translateY(0); /* 元の位置に戻る */
+    }
+}
+
+.weapon-item h3 {
+    margin: 0 0 4px; /* マージンを小さく */
+    font-size: 1.2em; /* フォントサイズを小さく */
+}
+
+.weapon-item p {
+    margin: 0 0 6px; /* マージンを小さく */
+    font-size: 0.9em; /* フォントサイズを小さく */
+    line-height: 1.4; /* 行間を少し詰める */
+}
+
+.weapon-item img {
+    width: 100%; /* 画像をカード全体に広げる */
+    border-radius: 4px;
+    margin-top: 4px; /* マージンを小さく */
+}

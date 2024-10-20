@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FortniteJPweb</title>
+    <link rel="stylesheet" href="costyles.css" />
+    <link rel="stylesheet" href="tabs.css" />
+    <link rel="stylesheet" href="cosmetics.css" />
+    <link rel="stylesheet" href="news.css" />
+    <link rel="stylesheet" href="dynamicPak.css" />
+    <link rel="stylesheet" href="weapon.css" />
+  </head>
+  <body>
+    <header>
+      <h1>FLJPtrackerweb</h1>
+    </header>
+
+    <nav>
+      <ul class="tabs">
+        <li><a href="#cosmetics" class="active">コスメティクス</a></li>
+        <li><a href="#weapons">武器</a></li>
+        <li><a href="#news">ニュースフィード</a></li>
+        <li><a href="#fuseditems">複合化アイテム</a></li>
+        <li><a href="#battlepass">バトルパスアイテム</a></li>
+        <li><a href="#calendar">競技カレンダー</a></li>
+        <li><a href="#map">マップ</a></li>
+        <li><a href="#previousmap">前のマップ</a></li>
+        <li><a href="#fishlist">魚リスト</a></li>
+      </ul>
+    </nav>
+
+    <section id="cosmetics" class="active">
+      <h2>コスメティクス検索</h2>
+      <form id="search-form">
+        <label for="query">検索キーワード（ID、名前、説明）:</label>
+        <input type="text" id="query" name="query" />
+        <button type="button" onclick="searchCosmetics()">検索</button>
+      </form>
+      <div id="results"></div>
+    </section>
+
+    <section id="weapons" style="display: none">
+      <h2>武器情報</h2>
+       <div id="loading" style="display: none;">読み込み中...</div> <!-- ローディングインジケーター -->
+      <div id="weapons-results"></div>
+    </section>
+
+    <section id="news" style="display: none">
+      <h2>ニュースフィード</h2>
+      <div id="news-results"></div>
+    </section>
+
+    <section id="fuseditems" style="display: none">
+      <h2>複合化されたアイテム</h2>
+      <p>BRアイテムのみの為、その他ゲームモードのアイテムは表示されません。</p>
+      <div id="dynamic-pak-results"></div>
+    </section>
+
+    <section id="map" style="display: none">
+      <h2>マップ情報</h2>
+      <div class="map-container">
+        <img
+          id="map-image-1"
+          src="https://media.fortniteapi.io/images/map.png"
+          alt=""
+          style="width: 100%; max-width: 800px; border-radius: 8px"
+        />
+        <img
+          id="map-image-2"
+          src="https://media.fortniteapi.io/images/map.png?showPOI=true&lang=ja"
+          alt=""
+          style="width: 100%; max-width: 800px; border-radius: 8px"
+        />
+      </div>
+    </section>
+
+    <script src="cosmetics.js"></script>
+    <script src="news.js"></script>
+    <script src="dynamicPak.js"></script>
+    <script src="weapon.js"></script> <!-- 追加した武器用のJSファイル -->
+    <script>
+      // タブがアクティブになったときに表示を切り替える
+      document.querySelectorAll('.tabs a').forEach((tab) => {
+        tab.addEventListener('click', (event) => {
+          event.preventDefault(); // デフォルトのリンク動作を防止
+          const targetId = tab.getAttribute('href');
+
+          // 全てのセクションを非表示
+          document.querySelectorAll('section').forEach((section) => {
+            section.style.display = 'none';
+          });
+
+          // アクティブなタブを更新
+          document.querySelectorAll('.tabs a').forEach((link) => {
+            link.classList.remove('active');
+          });
+
+          // クリックされたタブをアクティブにする
+          tab.classList.add('active');
+
+          // 選択されたセクションを表示
+          const targetSection = document.querySelector(targetId);
+          targetSection.style.display = 'block';
+
+          // ニュースタブがアクティブになった場合、ニュースを取得
+          if (targetId === '#news') {
+            fetchNews(); // ニュースを取得する関数を呼び出す
+          }
+
+          // 複合化アイテムタブがアクティブになった場合、データを取得
+          if (targetId === '#fuseditems') {
+            fetchDynamicKeys(); // 複合化アイテムを取得する関数を呼び出す
+          }
+
+          // 武器タブがアクティブになった場合、武器情報を取得
+          if (targetId === '#weapons') {
+            fetchWeapons(); // 武器情報を取得する関数を呼び出す
+          }
+        });
+      });
+
+      // 初期ロード時にコスメティクスタブを表示
+      document.getElementById('cosmetics').style.display = 'block';
+    </script>
+  </body>
+</html>
