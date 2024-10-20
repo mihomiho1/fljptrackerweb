@@ -20,6 +20,35 @@
     animation: fadeIn 0.3s forwards; /* アニメーションを適用 */
 }
 
+/* スマートフォン対応のスタイル */
+@media (max-width: 600px) {
+    .weapon-item {
+        flex: 1 1 calc(50% - 16px); /* 幅を50%に設定 */
+    }
+
+    .weapon-item h3 {
+        font-size: 1.1em; /* フォントサイズを調整 */
+    }
+
+    .weapon-item p {
+        font-size: 0.8em; /* フォントサイズを調整 */
+    }
+}
+
+@media (max-width: 400px) {
+    .weapon-item {
+        flex: 1 1 100%; /* 幅を100%に設定 */
+    }
+
+    .weapon-item h3 {
+        font-size: 1em; /* フォントサイズをさらに調整 */
+    }
+
+    .weapon-item p {
+        font-size: 0.7em; /* フォントサイズをさらに調整 */
+    }
+}
+
 /* ローディングインジケーターのスタイル */
 #loading {
     display: flex;
@@ -29,6 +58,23 @@
     height: 50px; /* 高さを設定 */
     color: #333; /* テキストカラー */
     animation: fadeIn 0.5s; /* アニメーションを適用 */
+}
+
+/* 検索ボックスのスタイル */
+#search {
+    width: 100%; /* 幅を100%に設定 */
+    padding: 8px; /* 内側のパディング */
+    margin-bottom: 16px; /* 下部のマージン */
+    border: 1px solid #ccc; /* ボーダー */
+    border-radius: 4px; /* 角を丸くする */
+    font-size: 1em; /* フォントサイズ */
+    transition: border-color 0.3s; /* ボーダーの色を変化させるトランジション */
+}
+
+/* フォーカス時のスタイル */
+#search:focus {
+    border-color: #007bff; /* フォーカス時のボーダーカラー */
+    outline: none; /* アウトラインを消す */
 }
 
 /* アニメーション */

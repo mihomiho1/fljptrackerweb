@@ -1,6 +1,7 @@
 async function fetchWeapons() {
   const loadingIndicator = document.getElementById('loading');
   const resultsContainer = document.getElementById('weapons-results');
+  const searchInput = document.getElementById('search');
 
   try {
     // ローディングインジケーターを表示
@@ -17,27 +18,30 @@ async function fetchWeapons() {
     const data = await response.json();
     const weapons = data.weapons; // APIからの武器データを取得
 
-    if (weapons.length === 0) {
+    // 重複アイテムを排除
+    const uniqueWeapons = Array.from(new Set(weapons.map((weapon) => weapon.id))).map((id) =>
+      weapons.find((weapon) => weapon.id === id),
+    );
+
+    if (uniqueWeapons.length === 0) {
       resultsContainer.innerHTML = '<p>武器が見つかりませんでした。</p>';
       return;
     }
 
-    weapons.forEach((weapon) => {
-      const weaponDiv = document.createElement('div');
-      weaponDiv.classList.add('weapon-item');
-      weaponDiv.innerHTML = `
-        <h3>${weapon.name}</h3>
-        <p>ID: ${weapon.id}</p>
-        <p>説明: ${weapon.description || '説明なし'}</p>
-        <p>レアリティ: ${weapon.rarity}</p>
-        <p>クリティカルダメージ: ${weapon.mainStats.DamageZone_Critical}</p>
-        <p>ダメージ: ${weapon.mainStats.DmgPB}</p>
-        <p>発射レート: ${weapon.mainStats.FiringRate} 発/秒</p>
-        <p>リロード時間: ${weapon.mainStats.ReloadTime} 秒</p>
-        <img src="${weapon.images.icon}" alt="${weapon.name}アイコン" />
-      `;
-      resultsContainer.appendChild(weaponDiv);
+    // 検索イベントの追加
+    searchInput.addEventListener('input', () => {
+      const searchTerm = searchInput.value.toLowerCase();
+      displayWeapons(
+        uniqueWeapons.filter(
+          (weapon) =>
+            weapon.id.toLowerCase().includes(searchTerm) ||
+            weapon.name.toLowerCase().includes(searchTerm),
+        ),
+      );
     });
+
+    // 初回表示
+    displayWeapons(uniqueWeapons);
   } catch (error) {
     console.error('Fetch Weapons Error:', error);
     resultsContainer.innerText = '武器情報の取得中にエラーが発生しました。';
@@ -45,4 +49,32 @@ async function fetchWeapons() {
     // ローディングインジケーターを非表示
     loadingIndicator.style.display = 'none';
   }
+}
+
+// 武器情報を表示する関数
+function displayWeapons(weapons) {
+  const resultsContainer = document.getElementById('weapons-results');
+  resultsContainer.innerHTML = ''; // 結果をリセット
+
+  if (weapons.length === 0) {
+    resultsContainer.innerHTML = '<p>武器が見つかりませんでした。</p>';
+    return;
+  }
+
+  weapons.forEach((weapon) => {
+    const weaponDiv = document.createElement('div');
+    weaponDiv.classList.add('weapon-item');
+    weaponDiv.innerHTML = `
+      <h3>${weapon.name}</h3>
+      <p>ID: ${weapon.id}</p>
+      <p>説明: ${weapon.description || '説明なし'}</p>
+      <p>レアリティ: ${weapon.rarity}</p>
+      <p>クリティカルダメージ: ${weapon.mainStats.DamageZone_Critical}</p>
+      <p>ダメージ: ${weapon.mainStats.DmgPB}</p>
+      <p>発射レート: ${weapon.mainStats.FiringRate} 発/秒</p>
+      <p>リロード時間: ${weapon.mainStats.ReloadTime} 秒</p>
+      <img src="${weapon.images.icon}" alt="${weapon.name}アイコン" />
+    `;
+    resultsContainer.appendChild(weaponDiv);
+  });
 }
