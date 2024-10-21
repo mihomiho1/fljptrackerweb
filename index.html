@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="calendar.css" />
     <link rel="stylesheet" href="battlepath.css" />
     <link rel="stylesheet" href="map.css" />
-  </head>
+    <link rel="stylesheet" href="fish.css" />  </head>
   <body>
     <header>
       <h1>FLJPtrackerweb</h1>
@@ -78,6 +78,11 @@
       <div id="map-results"></div>
     </section>
 
+    <section id="fishlist" style="display: none;">
+      <h2>魚リスト</h2>
+      <div id="fish-results"></div>
+    </section>
+
     </section>
     <section id="news" style="display: none">
       <h2>ニュースフィード</h2>
@@ -123,6 +128,7 @@
     <script src="calendar.js"></script>
     <script src="battlepath.js"></script>
     <script src="map.js"></script>
+    <script src="fish.js"></script>
     <script>
       // タブがアクティブになったときに表示を切り替える
       document.querySelectorAll('.tabs a').forEach((tab) => {
@@ -166,6 +172,12 @@
           if (targetId === '#weapons') {
             fetchWeapons(); // 武器情報を取得する関数を呼び出す
           }
+
+          // 魚リストタブがアクティブになった場合、魚リストを取得
+          if (targetId === '#fishlist') {
+           fetchFishList(); // 魚リストを取得する関数を呼び出す
+          }
+
         });
       });
 

@@ -1,16 +1,15 @@
-/* fish.css */
 .card-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); /* 180pxに拡大 */
+  gap: 10px; /* カード間のスペースを小さく */
   justify-items: center;
 }
 
 .fish-card {
-  width: 150px;
+  width: 180px; /* カードの幅を大きく */
   border: 2px solid #ccc;
   border-radius: 8px;
-  padding: 10px;
+  padding: 15px; /* パディングを増やす */
   text-align: center;
   transition: transform 0.3s ease;
   background-color: #f9f9f9;
@@ -22,24 +21,39 @@
 }
 
 .fish-image {
-  width: 100px;
-  height: 100px;
+  width: 120px; /* 画像サイズを大きく */
+  height: 120px;
   object-fit: cover;
   border-radius: 50%;
 }
 
 /* スマホ対応 */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .card-container {
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    grid-template-columns: repeat(3, 1fr); /* タブレットサイズでは3列 */
   }
 
   .fish-card {
-    width: 120px;
+    width: 120px; /* 幅を少し小さく */
   }
 
   .fish-image {
     width: 80px;
     height: 80px;
+  }
+}
+
+@media (max-width: 768px) {
+  .card-container {
+    grid-template-columns: repeat(2, 1fr); /* スマホサイズでは2列 */
+  }
+
+  .fish-card {
+    width: 100px; /* 幅をさらに小さく */
+  }
+
+  .fish-image {
+    width: 60px;
+    height: 60px;
   }
 }

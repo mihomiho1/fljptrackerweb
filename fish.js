@@ -22,7 +22,11 @@ async function fetchFishList() {
 
 function displayFishList(fishArray) {
   const resultsContainer = document.getElementById('fish-results');
+  resultsContainer.classList.add('card-container'); // .card-containerを適用
   resultsContainer.innerHTML = ''; // 既存のコンテンツをクリア
+
+  // card-container クラスを適用
+  resultsContainer.classList.add('card-container');
 
   fishArray.forEach((fish) => {
     const card = document.createElement('div');
