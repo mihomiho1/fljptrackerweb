@@ -71,7 +71,7 @@ async function fetchDynamicKeys() {
         } else {
           const errorDiv = document.createElement('div');
           errorDiv.classList.add('error');
-          errorDiv.textContent = 'アイテム情報の取得に失敗しました。';
+          errorDiv.textContent = '';
           dynamicPakResults.appendChild(errorDiv);
         }
       } else {
