@@ -5,13 +5,14 @@
     border-radius: 8px;
     background-size: cover;
     background-position: center;
-    color: rgb(0, 0, 0); /* テキストの色を白に */
+    color: rgb(0, 0, 0); /* テキストの色 */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* シャドウ効果 */
-    transition: transform 0.3s; /* ホバー時の変化をスムーズに */
+    transition: transform 0.3s, box-shadow 0.3s; /* ホバー時の変化をスムーズに */
 }
 
 .battlepass-card:hover {
-    transform: scale(1.05); /* ホバー時に拡大 */
+    transform: translateY(-5px) scale(1.05); /* ホバー時に拡大・上に移動 */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7); /* ホバー時に影を強く */
 }
 
 .battlepass-card img {
@@ -35,4 +36,17 @@
     display: flex;
     flex-wrap: wrap; /* 複数行に対応 */
     justify-content: space-between; /* カード間のスペースを均等に配置 */
+}
+
+/* スマホ対応 */
+@media (max-width: 768px) {
+    .battlepass-card {
+        width: calc(100% / 3 - 10px); /* スマホでは3個を1列に表示 */
+    }
+}
+
+@media (max-width: 480px) {
+    .battlepass-card {
+        width: calc(100% - 10px); /* スマホでは1個を1列に表示 */
+    }
 }
