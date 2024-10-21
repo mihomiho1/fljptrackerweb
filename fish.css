@@ -1,0 +1,45 @@
+/* fish.css */
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 20px;
+  justify-items: center;
+}
+
+.fish-card {
+  width: 150px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  text-align: center;
+  transition: transform 0.3s ease;
+  background-color: #f9f9f9;
+}
+
+.fish-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.fish-image {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+/* スマホ対応 */
+@media (max-width: 768px) {
+  .card-container {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  }
+
+  .fish-card {
+    width: 120px;
+  }
+
+  .fish-image {
+    width: 80px;
+    height: 80px;
+  }
+}
