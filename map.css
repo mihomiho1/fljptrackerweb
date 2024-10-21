@@ -1,3 +1,27 @@
+/* ドロップダウンメニューのスタイル */
+#seasonSelect {
+  padding: 10px; /* 内側余白 */
+  border: 1px solid #ccc; /* 境界線 */
+  border-radius: 5px; /* 角を丸める */
+  background-color: #ffffff; /* 背景色 */
+  font-size: 1rem; /* フォントサイズ */
+  margin-right: 10px; /* 右側の余白 */
+  transition: border-color 0.3s ease; /* 境界線の色が変わる際のアニメーション */
+}
+
+/* ドロップダウンメニューにフォーカスしたときのスタイル */
+#seasonSelect:focus {
+  border-color: #007bff; /* フォーカス時の境界線の色 */
+  outline: none; /* デフォルトのアウトラインを削除 */
+}
+
+/* ドロップダウンメニューのラベル */
+label {
+  font-weight: bold; /* 太字 */
+  margin-right: 10px; /* 右側の余白 */
+  font-size: 1rem; /* フォントサイズ */
+}
+
 /* マップ結果のスタイル */
 #map-results {
   display: flex;
@@ -8,16 +32,22 @@
 }
 
 .map-result {
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 300px;
-  padding: 20px;
-  text-align: center;
-  transition: transform 0.3s ease, opacity 0.3s ease;
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeInUp 0.5s forwards;
+  border: 1px solid #ccc; /* カードの境界線 */
+  border-radius: 8px; /* カードの角を丸める */
+  margin: 10px; /* カード間の余白 */
+  padding: 10px; /* カードの内側余白 */
+  text-align: center; /* テキストを中央揃え */
+  background-color: #f9f9f9; /* カードの背景色 */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* カードの影 */
+  width: 300px; /* カードの幅を指定 */
+  display: inline-block; /* カードを横に並べる */
+}
+
+.map-image {
+  width: 100%; /* 画像の幅をカードに合わせる */
+  height: auto; /* 高さを自動調整 */
+  border-radius: 8px; /* 画像の角を丸める */
+  margin-top: 5px; /* 画像とテキストの間の余白 */
 }
 
 .map-result h3 {

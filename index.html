@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="calendar.css" />
     <link rel="stylesheet" href="battlepath.css" />
     <link rel="stylesheet" href="map.css" />
-    <link rel="stylesheet" href="fish.css" />
   </head>
   <body>
     <header>
@@ -65,24 +64,21 @@
 
     <section id="previousmap" style="display: none;">
       <h2>マップ検索</h2>
-      <form id="version-search-form"></form>
-        <label for="patchVersion">バージョンを入力してください:</label>
-        <input
-        type="text"
-        id="patchVersion"
-        name="patchVersion"
-        onkeydown="handleKeyPress(event)"
-        />
-        <button type="button" onclick="searchPreviousMap()">検索</button>
+      <form id="season-search-form" onsubmit="event.preventDefault(); searchMaps();"></form>
+        <label for="seasonSelect">シーズンを選択してください:</label>
+        <select id="seasonSelect" onchange="handleSeasonChange()"></select>
+          <option value="">-- シーズンを選択 --</option>
+        </select>
+
+        <label for="version-input">バージョンで検索:</label>
+        <input type="text" id="version-input" placeholder="バージョンを入力" />
+
+      <button type="submit">検索</button>
       </form>
       <div id="map-results"></div>
     </section>
 
-    <section id="fishlist" style="display: none;">
-      <h2>魚リスト</h2>
-      <div id="fish-results" class="card-container"></div>
     </section>
-
     <section id="news" style="display: none">
       <h2>ニュースフィード</h2>
       <div id="news-results"></div>
@@ -120,6 +116,13 @@
       </div>
     </div>
 
+    <script src="cosmetics.js"></script>
+    <script src="news.js"></script>
+    <script src="dynamicPak.js"></script>
+    <script src="weapon.js"></script>
+    <script src="calendar.js"></script>
+    <script src="battlepath.js"></script>
+    <script src="map.js"></script>
     <script>
       // タブがアクティブになったときに表示を切り替える
       document.querySelectorAll('.tabs a').forEach((tab) => {
@@ -163,11 +166,6 @@
           if (targetId === '#weapons') {
             fetchWeapons(); // 武器情報を取得する関数を呼び出す
           }
-
-          // 魚リストタブがアクティブになった場合、魚の情報を取得
-          if (targetId === '#fishlist') {
-            fetchFishList(); // 魚リストを取得する関数を呼び出す
-          }
         });
       });
 
@@ -199,13 +197,5 @@
         }
       });
     </script>
-    <script src="cosmetics.js"></script>
-    <script src="news.js"></script>
-    <script src="dynamicPak.js"></script>
-    <script src="weapon.js"></script>
-    <script src="calendar.js"></script>
-    <script src="battlepath.js"></script>
-    <script src="map.js"></script>
-    <script src="fish.js"></script>
   </body>
 </html>
