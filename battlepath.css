@@ -1,0 +1,38 @@
+.battlepass-card {
+    width: calc(100% / 8 - 10px); /* 6個を1列に表示するための幅 */
+    margin: 5px; /* カード間のマージン */
+    padding: 10px;
+    border-radius: 8px;
+    background-size: cover;
+    background-position: center;
+    color: rgb(0, 0, 0); /* テキストの色を白に */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* シャドウ効果 */
+    transition: transform 0.3s; /* ホバー時の変化をスムーズに */
+}
+
+.battlepass-card:hover {
+    transform: scale(1.05); /* ホバー時に拡大 */
+}
+
+.battlepass-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.battlepass-card h3 {
+    margin: 10px 0 5px;
+    font-size: 1.2em;
+}
+
+.battlepass-card p {
+    margin: 5px 0;
+    font-size: 0.9em;
+    color: #666;
+}
+
+#battlepass-results {
+    display: flex;
+    flex-wrap: wrap; /* 複数行に対応 */
+    justify-content: space-between; /* カード間のスペースを均等に配置 */
+}

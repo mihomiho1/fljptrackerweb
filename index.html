@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="dynamicPak.css" />
     <link rel="stylesheet" href="weapon.css" />
     <link rel="stylesheet" href="calendar.css" />
+    <link rel="stylesheet" href="battlepath.css" />
   </head>
   <body>
     <header>
@@ -54,6 +55,13 @@
       <div id="calendar-results"></div>
     </section>
 
+    <section id="battlepass" style="display: none;">
+      <h2>バトルパスアイテム</h2>
+      <div id="battlepass-loading" style="display: none;">読み込み中...</div>
+      <div id="battlepass-results" class="card-container"></div>
+    </section>
+
+    </section>
     <section id="news" style="display: none">
       <h2>ニュースフィード</h2>
       <div id="news-results"></div>
@@ -96,6 +104,7 @@
     <script src="dynamicPak.js"></script>
     <script src="weapon.js"></script>
     <script src="calendar.js"></script>
+    <script src="battlepath.js"></script>
     <script>
       // タブがアクティブになったときに表示を切り替える
       document.querySelectorAll('.tabs a').forEach((tab) => {
@@ -128,6 +137,11 @@
           // 複合化アイテムタブがアクティブになった場合、データを取得
           if (targetId === '#fuseditems') {
             fetchDynamicKeys(); // 複合化アイテムを取得する関数を呼び出す
+          }
+
+          // バトルパスタブがアクティブになった場合、バトルパスアイテムを取得
+          if (targetId === '#battlepass') {
+            fetchBattlePassItems(); // バトルパスアイテムを取得する関数を呼び出す
           }
 
           // 武器タブがアクティブになった場合、武器情報を取得

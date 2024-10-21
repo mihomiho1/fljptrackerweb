@@ -54,7 +54,7 @@ async function fetchCalendar() {
               .map(
                 (window) => `
               <div class="window-card">
-                <p>大会日程: ${new Date(window.beginTime).toLocaleString()} - ${new Date(
+                <p>大会開催日: ${new Date(window.beginTime).toLocaleString()} - ${new Date(
                   window.endTime,
                 ).toLocaleString()}</p>
                 <img src="${window.tileImage}" alt="" />
