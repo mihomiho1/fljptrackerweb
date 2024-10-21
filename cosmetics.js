@@ -51,7 +51,8 @@ function displayItems(items) {
 
     // アイテムの内容を設定
     itemDiv.innerHTML = `
-      <h3>${item.name} (${item.id})</h3>
+      <h3>${item.name}</h3>
+      <h3>ID：${item.id}</h3>
       <p><strong>説明:</strong> ${item.description}</p>
       <img src="${iconUrl}" alt="${item.name}" onerror="this.src='PS.png';">
     `;
