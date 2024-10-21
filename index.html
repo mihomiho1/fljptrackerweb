@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="weapon.css" />
     <link rel="stylesheet" href="calendar.css" />
     <link rel="stylesheet" href="battlepath.css" />
+    <link rel="stylesheet" href="map.css" />
   </head>
   <body>
     <header>
@@ -61,6 +62,21 @@
       <div id="battlepass-results" class="card-container"></div>
     </section>
 
+    <section id="previousmap" style="display: none;">
+      <h2>マップ検索</h2>
+      <form id="version-search-form"></form>
+        <label for="patchVersion">バージョンを入力してください:</label>
+        <input
+        type="text"
+        id="patchVersion"
+        name="patchVersion"
+        onkeydown="handleKeyPress(event)"
+        />
+        <button type="button" onclick="searchPreviousMap()">検索</button>
+      </form>
+      <div id="map-results"></div>
+    </section>
+
     </section>
     <section id="news" style="display: none">
       <h2>ニュースフィード</h2>
@@ -105,6 +121,7 @@
     <script src="weapon.js"></script>
     <script src="calendar.js"></script>
     <script src="battlepath.js"></script>
+    <script src="map.js"></script>
     <script>
       // タブがアクティブになったときに表示を切り替える
       document.querySelectorAll('.tabs a').forEach((tab) => {
