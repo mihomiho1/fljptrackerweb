@@ -20,6 +20,9 @@ async function fetchCalendar() {
     const data = await response.json();
     const events = data.events; // APIからイベントデータを取得
 
+    // イベントを新しいものから古いものへソート
+    events.sort((a, b) => new Date(b.beginTime) - new Date(a.beginTime));
+
     if (events.length === 0) {
       resultsContainer.innerHTML = '<p>イベントが見つかりませんでした。</p>';
       return;
@@ -124,7 +127,7 @@ function showEventDetails(event) {
   // モーダルを表示
   modal.style.display = 'block';
   modalContent.classList.add('modal-show'); // アニメーションクラスを追加
-  
+
   // モーダルの閉じるボタンのイベントリスナー
   modal.querySelector('.close-modal').addEventListener('click', () => {
     modal.style.display = 'none';
