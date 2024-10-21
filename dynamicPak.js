@@ -84,7 +84,7 @@ async function fetchDynamicKeys() {
   } catch (error) {
     console.error('Fetch Dynamic Keys Error:', error);
     document.getElementById('dynamic-pak-results').innerText =
-      '複合化アイテムの取得中にエラーが発生しました。';
+      '複合化アイテムの取得中にエラーが発生しました。30秒後に再度読み込んでみてください。';
   }
 }
 
