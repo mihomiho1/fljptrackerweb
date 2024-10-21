@@ -28,10 +28,36 @@ async function fetchCalendar() {
       return;
     }
 
+    const currentTime = new Date(); // 現在の時刻
+
     events.forEach((event, index) => {
       const eventDiv = document.createElement('div');
       eventDiv.classList.add('calendar-event');
+
+      let label = '';
+      let foundOngoing = false; // 開催中の大会が見つかったかどうか
+
+      // 開催中のものを優先する
+      event.windows.forEach((window) => {
+        const windowStart = new Date(window.beginTime);
+        const windowEnd = new Date(window.endTime);
+
+        if (windowStart <= currentTime && windowEnd >= currentTime && !foundOngoing) {
+          // 開催中の大会を優先的にラベル付け
+          label = '<span class="event-label ongoing">開催中</span>';
+          foundOngoing = true;
+        } else if (
+          !foundOngoing &&
+          windowStart > currentTime &&
+          windowStart - currentTime <= 24 * 60 * 60 * 1000
+        ) {
+          // 「まもなく開催」のラベルは、開催中が見つかっていない場合のみ付ける
+          label = '<span class="event-label upcoming">まもなく開催</span>';
+        }
+      });
+
       eventDiv.innerHTML = `
+        ${label} <!-- ラベルを追加 -->
         <img src="${event.poster}" alt="${event.name_line1}" />
         <h3>${event.name_line1}${event.name_line2 || ''}</h3>
         <p>期間: ${new Date(event.beginTime).toLocaleString()} - ${new Date(
