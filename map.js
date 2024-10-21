@@ -22,8 +22,11 @@ async function fetchSeasons() {
 }
 
 async function populateSeasonDropdown() {
-  const seasons = await fetchSeasons();
   const dropdown = document.getElementById('seasonSelect');
+  // 読み込み中の表示を追加
+  dropdown.innerHTML = `<option>読み込み中...</option>`;
+
+  const seasons = await fetchSeasons();
   dropdown.innerHTML = ''; // 既存の選択肢をクリア
 
   // デフォルトの選択肢を追加
@@ -55,6 +58,10 @@ async function handleSeasonChange() {
 }
 
 async function searchMaps() {
+  const resultsContainer = document.getElementById('map-results');
+  // 読み込み中の表示を追加
+  resultsContainer.innerHTML = `<div class="loading-spinner">読み込み中...</div>`;
+
   const seasonName = document.getElementById('seasonSelect').value;
   const versionInput = document.getElementById('version-input').value.trim();
 
@@ -66,8 +73,7 @@ async function searchMaps() {
     const selectedSeason = seasons.find((season) => season.displayName === seasonName);
 
     if (!selectedSeason) {
-      document.getElementById('map-results').innerHTML =
-        '指定されたシーズンは見つかりませんでした。';
+      resultsContainer.innerHTML = '指定されたシーズンは見つかりませんでした。';
       return;
     }
 
@@ -86,6 +92,7 @@ async function searchMaps() {
   const filteredMaps = maps.filter(
     (map) => map.patchVersion === versionInput || versionInput === '',
   );
+
   displayMaps(filteredMaps);
 }
 
