@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="news.css" />
     <link rel="stylesheet" href="dynamicPak.css" />
     <link rel="stylesheet" href="weapon.css" />
+    <link rel="stylesheet" href="calendar.css" />
   </head>
   <body>
     <header>
@@ -47,6 +48,12 @@
       <div id="weapons-results"></div>
     </section>
 
+    <section id="calendar" style="display: none;">
+      <h2>競技カレンダー</h2>
+      <div id="calendar-loading" style="display: none;">読み込み中...</div>
+      <div id="calendar-results"></div>
+    </section>
+
     <section id="news" style="display: none">
       <h2>ニュースフィード</h2>
       <div id="news-results"></div>
@@ -76,10 +83,19 @@
       </div>
     </section>
 
+    <!-- モーダルウィンドウの要素 -->
+    <div id="event-modal" class="modal" style="display: none;">
+      <div class="modal-content">
+        <span class="close-modal" style="cursor: pointer;">&times;</span>
+        <div id="modal-event-details"></div>
+      </div>
+    </div>
+
     <script src="cosmetics.js"></script>
     <script src="news.js"></script>
     <script src="dynamicPak.js"></script>
-    <script src="weapon.js"></script> <!-- 追加した武器用のJSファイル -->
+    <script src="weapon.js"></script>
+    <script src="calendar.js"></script>
     <script>
       // タブがアクティブになったときに表示を切り替える
       document.querySelectorAll('.tabs a').forEach((tab) => {
@@ -123,6 +139,31 @@
 
       // 初期ロード時にコスメティクスタブを表示
       document.getElementById('cosmetics').style.display = 'block';
+
+      // モーダルウィンドウの表示処理
+      function showModal(eventDetails) {
+        const modal = document.getElementById('event-modal');
+        const modalContent = document.getElementById('modal-event-details');
+
+        // 大会の詳細情報を表示
+        modalContent.innerHTML = eventDetails;
+
+        // モーダルを表示
+        modal.style.display = 'flex';
+      }
+
+      // モーダルウィンドウを閉じる処理
+      document.querySelector('.close-modal').addEventListener('click', () => {
+        document.getElementById('event-modal').style.display = 'none';
+      });
+
+      // モーダルの外側をクリックした場合も閉じる処理
+      window.addEventListener('click', (event) => {
+        const modal = document.getElementById('event-modal');
+        if (event.target === modal) {
+          modal.style.display = 'none';
+        }
+      });
     </script>
   </body>
 </html>
