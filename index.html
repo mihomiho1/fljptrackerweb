@@ -13,7 +13,8 @@
     <link rel="stylesheet" href="calendar.css" />
     <link rel="stylesheet" href="battlepath.css" />
     <link rel="stylesheet" href="map.css" />
-    <link rel="stylesheet" href="fish.css" />  </head>
+    <link rel="stylesheet" href="fish.css" />
+    <link rel="stylesheet" href="countdown.css" />  </head>
   <body>
     <header>
       <h1>FLJPtrackerweb</h1>
@@ -30,6 +31,7 @@
         <li><a href="#map">マップ</a></li>
         <li><a href="#previousmap">前のマップ</a></li>
         <li><a href="#fishlist">魚リスト</a></li>
+        <li><a href="#countdown">シーズンカウントダウン</a></li>
       </ul>
     </nav>
 
@@ -54,6 +56,20 @@
       <h2>競技カレンダー</h2>
       <div id="calendar-loading" style="display: none;">読み込み中...</div>
       <div id="calendar-results"></div>
+    </section>
+
+    <section id="countdown" style="display: none;">
+      <h2>シーズンカウントダウン</h2>
+      <div class="countdown-container"></div>
+      <div class="countdown-item"></div>
+        <h3>シーズン終了までのカウントダウン</h3>
+        <div class="countdown" id="countdown1"></div>
+      </div>
+      <div class="countdown-item">
+        <h3>次のアップデートまでのカウントダウン</h3>
+        <div class="countdown" id="countdown2"></div>
+      </div>
+    </div>
     </section>
 
     <section id="battlepass" style="display: none;">
@@ -128,6 +144,7 @@
     <script src="battlepath.js"></script>
     <script src="map.js"></script>
     <script src="fish.js"></script>
+    <script src="countdown.js"></script>
     <script>
       // タブがアクティブになったときに表示を切り替える
       document.querySelectorAll('.tabs a').forEach((tab) => {
@@ -177,6 +194,10 @@
            fetchFishList(); // 魚リストを取得する関数を呼び出す
           }
 
+          // シーズンカウントダウンタブがアクティブになった場合、カウントダウンを表示
+          if (targetId === '#countdown') {
+            updateCountdown();
+          }
         });
       });
 

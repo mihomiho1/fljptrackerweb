@@ -1,0 +1,33 @@
+.countdown-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+}
+
+.countdown {
+  background: linear-gradient(135deg, #ff416c, #ff4b2b);
+  color: white;
+  font-size: 2em; /* 文字の大きさを大きく調整 */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    box-shadow: 0px 0px 10px rgba(255, 75, 43, 0.5);
+  }
+  to {
+    box-shadow: 0px 0px 20px rgba(255, 75, 43, 1);
+  }
+}
+
+.countdown span {
+  display: block;
+  font-weight: bold;
+  font-size: 0.9em; /* ラベルのサイズ */
+  margin-top: 10px;
+}
