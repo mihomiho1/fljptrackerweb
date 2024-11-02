@@ -1,9 +1,9 @@
 document.addEventListener('DOMContentLoaded', function () {
   // 11月2日15時までのカウントダウン
-  initializeCountdown('countdown1', '2024-11-02T15:00:00');
+  initializeCountdown('countdown1', '2024-12-12T00:00:00');
 
   // 次のアップデート（2024年10月29日17時まで）のカウントダウン
-  initializeCountdown('countdown2', '2024-10-29T17:00:00');
+  initializeCountdown('countdown2', '2024-11-07T15:00:00');
 
 });
 
