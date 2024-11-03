@@ -1,10 +1,12 @@
 document.addEventListener('DOMContentLoaded', function () {
-  // 11月2日15時までのカウントダウン
+  // シーズン終了のカウントダウン
   initializeCountdown('countdown1', '2024-12-12T00:00:00');
 
-  // 次のアップデート（2024年10月29日17時まで）のカウントダウン
-  initializeCountdown('countdown2', '2024-11-07T15:00:00');
+  // 次のアップデートのカウントダウン
+  initializeCountdown('countdown2', '2024-11-12T15:00:00');
 
+  // チャプター6のカウントダウン
+  initializeCountdown('countdown3', '2024-12-01T15:00:00');
 });
 
 function initializeCountdown(elementId, endTime) {
@@ -25,7 +27,16 @@ function initializeCountdown(elementId, endTime) {
     const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-    countdownElement.innerHTML = `${days}日 ${hours}時間 ${minutes}分 ${seconds}秒`;
+    countdownElement.innerHTML = `
+      <span class="time-unit days">${days}</span>
+      <span class="time-unit-label">日</span>
+      <span class="time-unit hours">${hours}</span>
+      <span class="time-unit-label">時間</span>
+      <span class="time-unit minutes">${minutes}</span>
+      <span class="time-unit-label">分</span>
+      <span class="time-unit seconds">${seconds}</span>
+      <span class="time-unit-label">秒</span>
+    `;
   }
 
   setInterval(updateCountdown, 1000); // 1秒ごとにカウントダウンを更新
