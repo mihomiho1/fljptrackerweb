@@ -1,70 +1,86 @@
 #countdown {
-  background-image: url('Fortniteremix.PNG'); /* 背景画像を指定 */
-  background-size: cover; /* 背景画像をタブ全体に拡大 */
-  background-position: center; /* 背景画像を中央に配置 */
-  background-repeat: no-repeat; /* 背景画像を繰り返さない */
-  padding: 80px 40px; /* 上下のパディングを増加 */
-  min-height: 600px; /* セクションの最小高さを設定 */
-  border-radius: 15px; /* コーナーを丸くする */
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5); /* シャドウを追加して浮き上がらせる */
+  background-image: url('Fortniteremix.PNG');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 80px 40px;
+  min-height: 600px;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
 }
 
 body {
-  background-color: #f0f0f0; /* 背景色を明るく設定 */
-  font-family: 'Arial', sans-serif; /* フォントを設定 */
+  background-color: #f0f0f0;
+  font-family: 'Arial', sans-serif;
 }
 
 .countdown-container {
-  display: flex; /* フレックスボックスを使用して横に並べる */
-  justify-content: center; /* 中央に配置 */
-  align-items: center; /* 縦方向の中央揃え */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap; /* コンテンツを折り返し */
   padding: 40px;
-  gap: 150px; /* カードの間にスペースを追加（幅を広げた分を考慮） */
+  gap: 30px; /* 初期のカード間のスペース */
 }
 
 .countdown-item {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.5)); /* 半透明の背景グラデーション */
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.5));
   border-radius: 15px;
   padding: 30px;
-  color: #333; /* テキストの色を暗くして視認性を向上 */
+  color: #333;
   text-align: center;
-  width: 400px; /* カードの幅を広げる */
+  width: calc(33.333% - 20px); /* デスクトップで3列 */
+  max-width: 400px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-  position: relative; /* アニメーション用の位置を設定 */
-  overflow: hidden; /* 子要素のはみ出しを防ぐ */
-  animation: pulse 2s infinite; /* 脈動するアニメーション */
+  position: relative;
+  overflow: hidden;
+  animation: pulse 2s infinite;
 }
 
 .countdown-timer {
-  font-size: 2.5em; /* フォントサイズを大きく */
+  font-size: 2.5em;
   font-weight: bold;
   margin-bottom: 15px;
 }
 
 .time-unit {
   display: inline-block;
-  width: 60px; /* 単位の幅を調整 */
+  width: 60px;
   padding: 10px;
   margin: 5px 2px;
-  background-color: rgba(255, 255, 255, 0.2); /* 背景を半透明に */
+  background-color: rgba(255, 255, 255, 0.2);
   border-radius: 10px;
-  font-size: 1.2em; /* フォントサイズを調整 */
-  text-align: center; /* 中央揃え */
-  transition: transform 0.3s; /* ホバー時のアニメーション */
+  font-size: 1.2em;
+  text-align: center;
+  transition: transform 0.3s;
 }
 
 .time-unit:hover {
-  transform: scale(1.1); /* ホバー時に拡大 */
+  transform: scale(1.1);
 }
 
 .countdown-item h3 {
   margin-top: 10px;
-  font-size: 1.5em; /* タイトルのサイズを大きく */
+  font-size: 1.5em;
 }
 
-/* 脈動するアニメーション */
 @keyframes pulse {
   0% { transform: scale(1); }
   50% { transform: scale(1.05); }
   100% { transform: scale(1); }
+}
+
+/* タブレット対応（2列） */
+@media (max-width: 768px) {
+  .countdown-item {
+    width: calc(50% - 20px); /* タブレットで2列 */
+  }
+}
+
+/* スマホ対応（1列） */
+@media (max-width: 480px) {
+  .countdown-item {
+    width: 100%; /* スマホで1列 */
+    margin: 10px 0;
+  }
 }

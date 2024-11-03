@@ -1,12 +1,15 @@
 document.addEventListener('DOMContentLoaded', function () {
   // シーズン終了のカウントダウン
-  initializeCountdown('countdown1', '2024-12-12T00:00:00');
+  initializeCountdown('countdown1', '2024-12-01T15:00:00');
 
   // 次のアップデートのカウントダウン
   initializeCountdown('countdown2', '2024-11-12T15:00:00');
 
   // チャプター6のカウントダウン
-  initializeCountdown('countdown3', '2024-12-01T15:00:00');
+  initializeCountdown('countdown3', '2024-12-01T21:00:00');
+
+  // チャプター6の最初のアップデートカウントダウン
+  initializeCountdown('countdown4', '2024-12-10T17:00:00');
 });
 
 function initializeCountdown(elementId, endTime) {
