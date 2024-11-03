@@ -35,7 +35,7 @@ async function fetchCalendar() {
       eventDiv.classList.add('calendar-event');
 
       let label = '';
-      let foundOngoing = false; // 開催中の大会が見つかったかどうか
+      let foundOngoing = false;
 
       // 開催中のものを優先する
       event.windows.forEach((window) => {
@@ -43,7 +43,6 @@ async function fetchCalendar() {
         const windowEnd = new Date(window.endTime);
 
         if (windowStart <= currentTime && windowEnd >= currentTime && !foundOngoing) {
-          // 開催中の大会を優先的にラベル付け
           label = '<span class="event-label ongoing">開催中</span>';
           foundOngoing = true;
         } else if (
@@ -51,14 +50,14 @@ async function fetchCalendar() {
           windowStart > currentTime &&
           windowStart - currentTime <= 24 * 60 * 60 * 1000
         ) {
-          // 「まもなく開催」のラベルは、開催中が見つかっていない場合のみ付ける
           label = '<span class="event-label upcoming">まもなく開催</span>';
         }
       });
 
+      // 「読み込み中...」テキストを最初に表示
       eventDiv.innerHTML = `
-        ${label} <!-- ラベルを追加 -->
-        <img src="${event.poster}" alt="${event.name_line1}" />
+        ${label}
+        <div class="image-placeholder">大会画像及びデータの読み込み中...</div>
         <h3>${event.name_line1}${event.name_line2 || ''}</h3>
         <p>期間: ${new Date(event.beginTime).toLocaleString()} - ${new Date(
         event.endTime,
@@ -66,6 +65,20 @@ async function fetchCalendar() {
         <p>${event.short_description || '説明なし'}</p>
         <p>プラットフォーム: ${event.platforms.join(', ')}</p>
       `;
+
+      // 画像を作成して読み込みが完了するまで待機
+      const img = document.createElement('img');
+      img.src = event.poster;
+      img.alt = event.name_line1;
+      img.style.display = 'none'; // 最初は非表示にしておく
+
+      img.onload = () => {
+        // 読み込み完了後に画像を表示し、「読み込み中...」を非表示にする
+        eventDiv.querySelector('.image-placeholder').style.display = 'none';
+        img.style.display = 'block';
+      };
+
+      eventDiv.prepend(img);
 
       // イベントクリックでモーダル表示
       eventDiv.addEventListener('click', () => {
@@ -90,7 +103,7 @@ async function fetchCalendar() {
               .join('')}
           </div>
         `;
-        modal.style.display = 'flex'; // モーダルを表示
+        modal.style.display = 'flex';
         modalContent.classList.add('modal-show');
       });
 
@@ -114,7 +127,7 @@ async function fetchCalendar() {
     console.error('Fetch Calendar Error:', error);
     resultsContainer.innerText = 'カレンダー情報の取得中にエラーが発生しました。';
   } finally {
-    loadingIndicator.style.display = 'none'; // ローディングインジケーターを非表示
+    loadingIndicator.style.display = 'none';
   }
 }
 
