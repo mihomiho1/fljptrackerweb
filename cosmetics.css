@@ -50,6 +50,29 @@
   }
 }
 
+#load-more {
+  display: block;
+  margin: 20px auto; /* 中央揃え */
+  padding: 10px 20px; /* パディング */
+  font-size: 1em; /* フォントサイズ */
+  color: white; /* テキストの色 */
+  background-color: #0078D7; /* ボタンの背景色 */
+  border: none; /* ボーダーを削除 */
+  border-radius: 8px; /* 角の丸み */
+  cursor: pointer; /* カーソルをポインターに変更 */
+  transition: background-color 0.3s, transform 0.2s; /* 背景色と拡大のトランジション */
+}
+
+#load-more:hover {
+  background-color: #005BB5; /* ホバー時の背景色 */
+  transform: scale(1.05); /* ホバー時の拡大 */
+}
+
+#load-more:active {
+  background-color: #004080; /* クリック時の背景色 */
+  transform: scale(1); /* クリック時は元のサイズに戻す */
+}
+
 /* cosmetics.css */
 .loading, .searching {
   display: flex;

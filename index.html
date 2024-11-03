@@ -4,13 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>FortniteJPweb</title>
+    <link rel="stylesheet" href="calendar.css" />
     <link rel="stylesheet" href="costyles.css" />
     <link rel="stylesheet" href="tabs.css" />
     <link rel="stylesheet" href="cosmetics.css" />
     <link rel="stylesheet" href="news.css" />
     <link rel="stylesheet" href="dynamicPak.css" />
     <link rel="stylesheet" href="weapon.css" />
-    <link rel="stylesheet" href="calendar.css" />
     <link rel="stylesheet" href="battlepath.css" />
     <link rel="stylesheet" href="map.css" />
     <link rel="stylesheet" href="fish.css" />
@@ -25,9 +25,9 @@
         <li><a href="#cosmetics" class="active">コスメティクス</a></li>
         <li><a href="#weapons">武器</a></li>
         <li><a href="#news">ニュースフィード</a></li>
+        <li><a href="#calendar">競技カレンダー</a></li>
         <li><a href="#fuseditems">複合化アイテム</a></li>
         <li><a href="#battlepass">バトルパスアイテム</a></li>
-        <li><a href="#calendar">競技カレンダー</a></li>
         <li><a href="#map">マップ</a></li>
         <li><a href="#previousmap">前のマップ</a></li>
         <li><a href="#fishlist">魚リスト</a></li>
@@ -137,10 +137,10 @@
     </div>
 
     <script src="cosmetics.js"></script>
+    <script src="calendar.js"></script>
     <script src="news.js"></script>
     <script src="dynamicPak.js"></script>
     <script src="weapon.js"></script>
-    <script src="calendar.js"></script>
     <script src="battlepath.js"></script>
     <script src="map.js"></script>
     <script src="fish.js"></script>
@@ -202,8 +202,8 @@
       });
 
       // 初期ロード時にコスメティクスタブを表示
-      document.getElementById('calendar').style.display = 'block';
-      document.querySelector('.tabs a[href="#calendar"]').classList.add('active');
+      document.getElementById('cosmetics').style.display = 'block';
+      document.querySelector('.tabs a[href="#cosmetics"]').classList.add('active');
 
       // モーダルウィンドウの表示処理
       function showModal(eventDetails) {
