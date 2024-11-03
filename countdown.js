@@ -18,7 +18,7 @@ function initializeCountdown(elementId, endTime) {
     const distance = targetTime - now;
 
     if (distance < 0) {
-      countdownElement.innerHTML = '終了しました';
+      countdownElement.innerHTML = '';
       return;
     }
 
