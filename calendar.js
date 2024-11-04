@@ -1,16 +1,26 @@
-async function fetchCalendar() {
+async function fetchCalendar(region = 'ASIA') {
   const loadingIndicator = document.getElementById('calendar-loading');
   const resultsContainer = document.getElementById('calendar-results');
   const modal = document.getElementById('event-modal');
   const modalContent = document.getElementById('modal-event-details');
   const closeModalBtn = document.querySelector('.close-modal');
 
+  // 現在のアクティブボタンをリセット
+  document.querySelectorAll('.region-buttons button').forEach((button) => {
+    button.classList.remove('active');
+  });
+
+  // 現在のボタンにアクティブクラスを追加
+  document
+    .querySelector(`.region-buttons button[onclick="fetchCalendar('${region}')"]`)
+    .classList.add('active');
+
   try {
     // ローディングインジケーターを表示
     loadingIndicator.style.display = 'flex';
     resultsContainer.innerHTML = ''; // 結果をリセット
 
-    const response = await fetch('https://fortniteapi.io/v1/events/list?lang=ja&region=ASIA', {
+    const response = await fetch(`https://fortniteapi.io/v1/events/list?lang=ja&region=${region}`, {
       headers: {
         Authorization: '5ad61fd1-c149947d-1bb4a885-8cb8a6db',
       },
@@ -18,7 +28,7 @@ async function fetchCalendar() {
     if (!response.ok) throw new Error('イベント情報の取得に失敗しました。');
 
     const data = await response.json();
-    const events = data.events; // APIからイベントデータを取得
+    const events = data.events;
 
     // イベントを新しいものから古いものへソート
     events.sort((a, b) => new Date(b.beginTime) - new Date(a.beginTime));
@@ -28,7 +38,7 @@ async function fetchCalendar() {
       return;
     }
 
-    const currentTime = new Date(); // 現在の時刻
+    const currentTime = new Date();
 
     events.forEach((event, index) => {
       const eventDiv = document.createElement('div');
@@ -37,7 +47,6 @@ async function fetchCalendar() {
       let label = '';
       let foundOngoing = false;
 
-      // 開催中のものを優先する
       event.windows.forEach((window) => {
         const windowStart = new Date(window.beginTime);
         const windowEnd = new Date(window.endTime);
@@ -54,7 +63,6 @@ async function fetchCalendar() {
         }
       });
 
-      // 「読み込み中...」テキストを最初に表示
       eventDiv.innerHTML = `
         ${label}
         <div class="image-placeholder">大会画像及びデータの読み込み中...</div>
@@ -66,21 +74,18 @@ async function fetchCalendar() {
         <p>プラットフォーム: ${event.platforms.join(', ')}</p>
       `;
 
-      // 画像を作成して読み込みが完了するまで待機
       const img = document.createElement('img');
       img.src = event.poster;
       img.alt = event.name_line1;
-      img.style.display = 'none'; // 最初は非表示にしておく
+      img.style.display = 'none';
 
       img.onload = () => {
-        // 読み込み完了後に画像を表示し、「読み込み中...」を非表示にする
         eventDiv.querySelector('.image-placeholder').style.display = 'none';
         img.style.display = 'block';
       };
 
       eventDiv.prepend(img);
 
-      // イベントクリックでモーダル表示
       eventDiv.addEventListener('click', () => {
         modalContent.innerHTML = `
           <h2>${event.name_line1}${event.name_line2 || ''}</h2>
@@ -110,13 +115,11 @@ async function fetchCalendar() {
       resultsContainer.appendChild(eventDiv);
     });
 
-    // モーダルを閉じる処理
     closeModalBtn.addEventListener('click', () => {
       modal.style.display = 'none';
       modalContent.classList.remove('modal-show');
     });
 
-    // モーダル外クリックで閉じる処理
     window.addEventListener('click', (e) => {
       if (e.target === modal) {
         modal.style.display = 'none';

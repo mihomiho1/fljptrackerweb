@@ -53,6 +53,15 @@
 
     <section id="calendar" style="display: none;">
       <h2>競技カレンダー</h2>
+      <div class="region-buttons">
+        <button onclick="fetchCalendar('NAE')">北米東部</button>
+        <button onclick="fetchCalendar('NAW')">北米西部</button>
+        <button onclick="fetchCalendar('EU')">ヨーロッパ</button>
+        <button onclick="fetchCalendar('BR')">ブラジル</button>
+        <button onclick="fetchCalendar('OCE')">オセアニア</button>
+        <button onclick="fetchCalendar('ASIA')">アジア</button>
+        <button onclick="fetchCalendar('ME')">中東</button>
+      </div>
       <div id="calendar-loading" style="display: none;">読み込み中...</div>
       <div id="calendar-results"></div>
     </section>

@@ -126,6 +126,53 @@
     color: #fff;
 }
 
+.region-buttons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.region-buttons button {
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #555;
+  background-color: #f8f8f8;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.region-buttons button:hover {
+  background-color: #e0e0e0;
+  color: #333;
+  border-color: #bbb;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.region-buttons button.active {
+  background: linear-gradient(135deg, #007bff, #0056b3);
+  color: #fff;
+  border-color: transparent;
+  box-shadow: 0 8px 12px rgba(0, 123, 255, 0.4);
+  transform: translateY(-4px);
+}
+
+.region-buttons button.active:hover {
+  background: linear-gradient(135deg, #0056b3, #003f7f);
+  box-shadow: 0 10px 15px rgba(0, 123, 255, 0.5);
+  transform: translateY(-5px);
+}
+
+.region-buttons button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.3);
+}
+
 .ongoing {
     background-color: #d9534f; /* 赤（開催中） */
 }
